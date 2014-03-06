@@ -33,7 +33,7 @@ def dict_diff(file1, file2): # Compare dict, file 2 to file 1 and print differen
                 print('+   "' + str(n) + '" : "' + str(file2[n]) + '"')
             else:
                 if type(file2[n]) == dict: # File 2 value is type dict
-                    print('    "' + str(n) + '" : {') # Print Key file 2
+                    print('+   "' + str(n) + '" : {') # Print Key file 2
                     dict_diff(file1[n], file2[n]) # Recursion, compare dict in file 2 to value in file 1
                     continue
         else:
