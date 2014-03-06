@@ -9,26 +9,26 @@ def get_file(): # Function: Open files
         json_data = json.load(json_file) # Parse "json_file" as "json_data" | json objects -> python dict / json array -> python lists
         return json_data 
 
-def list_diff(file1, file2): # Compare list, file 2 to file 1 and print diffrences
+def list_diff(file1, file2): # Compare list, file 2 to file 1 and print differences
     for i in file1:
         if i in file2: # Value is in BOTH files
             print('     "' + str(i) + '"')
-        elif i not in file2: # Value is missing in file 2
+        elif i not in file2: # Value is MISSING in file 2
             print('-    "' + str(i) + '"')
     for i in file2:
-        if i not in file1: # Value is only in file 2
+        if i not in file1: # Value is ONLY in file 2
             print('+    "' + str(i) + '"')
 
-def dict_diff(file1, file2): # Compare dict, file 2 to file 1 and print diffrences
+def dict_diff(file1, file2): # Compare dict, file 2 to file 1 and print differences
     for n in file1: # Compare Keys
-        if n not in file2: # Key is missing in file 2
+        if n not in file2: # Key is MISSING in file 2
             print('-   "' + str(n) + '":')
     for n in file2:
-        if n not in file1: # Key is only in file 2
+        if n not in file1: # Key is ONLY in file 2
             print('+   "' + str(n) + '":')
             continue
-        if file2[n] != file1[n]: # Compare values, value is only in file 2
-            if type(file2[n]) not in (dict, list): # Check, file 2 value is not a dict or list
+        if file2[n] != file1[n]: # Compare values, value is ONLY in file 2
+            if type(file2[n]) not in (dict, list): # Check, file 2 value is NOT a dict or list
                 print('-   "' + str(n) + '" : "' + str(file1[n]) + '"')
                 print('+   "' + str(n) + '" : "' + str(file2[n]) + '"')
             else:
@@ -60,11 +60,11 @@ def type_check(file1, file2): # Check, both files are JSON object or JSON Array
     return False
 
 def main():
-    file1 = get_file() # load files
+    file1 = get_file() # Load files
     file2 = get_file()
-    check = type_check(file1, file2) # check types
+    check = type_check(file1, file2) # Check file types
     if check == True: 
-        file_match(file1, file2) # compare
+        file_match(file1, file2) # Compare files
     
 if __name__ == "__main__":
     main()
